@@ -1,7 +1,7 @@
 // const express = require('express');
 // var app = express();
 // var router = require('./router/main')(app);
-// const Multer = require('multer');
+
 // const imgUpload = require('./imgUpload');
 
 
@@ -67,10 +67,12 @@
 //   console.log("Press Ctrl+C to quit.");
 // });
 
-import multer, {memoryStorage} from "multer";
-import express from "express";
-import storage from "@google-cloud/storage";
-import path from "path";
+// import multer, {memoryStorage} from "multer";
+const express = require('express');
+const storage = require('@google-cloud/storage');
+const Multer = require('multer');
+const path = require('path');
+// import path from "path";
 
 // Instantiate a storage client
 const googleCloudStorage = storage({
@@ -83,12 +85,17 @@ const app = express();
 
 // Multer is required to process file uploads and make them available via
 // req.files.
-const m = multer({
-  storage: memoryStorage(),
-  limits: {
-    fileSize: 5 * 1024 * 1024 // no larger than 5mb
-  }
+
+const m = Multer({
+  storage: Multer.MemoryStorage,
+  fileSize: 5 * 1024 * 1024
 });
+// const m = multer({
+//   storage: memoryStorage(),
+//   limits: {
+//     fileSize: 5 * 1024 * 1024 // no larger than 5mb
+//   }
+// });
 
 // A bucket is a container for objects (files).
 const bucket = googleCloudStorage.bucket(process.env.GCLOUD_STORAGE_BUCKET || 'm3t3r-app');
