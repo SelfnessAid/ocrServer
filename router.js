@@ -1,6 +1,6 @@
 const express = require('express');
 var app = express();
-const router = express.Router()(app);
+const router = express.Router()();
 const Multer = require('multer');
 const imgUpload = require('./imgUpload');
 
