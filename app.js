@@ -1,6 +1,6 @@
 const express = require('express');
 var app = express();
-const router = express.Router()();
+var router = require('./router/main')(app);
 const Multer = require('multer');
 const imgUpload = require('./imgUpload');
 
@@ -18,6 +18,8 @@ var server = app.listen(3000, function(){
     console.log("Ok");
 })
 
+
+
 // the multer accessing the key 'image', as defined in the `FormData` object on the front end
 // Passing the uploadToGcs function as middleware to handle the uploading of request.file
 app.post('/image-upload', multer.single('image'), imgUpload.uploadToGcs, function(request, response, next) {
@@ -26,4 +28,8 @@ app.post('/image-upload', multer.single('image'), imgUpload.uploadToGcs, functio
     data.imageUrl = request.file.cloudStoragePublicUrl;
   }
   response.send(data);
+})
+
+app.get('/', function(req, res){
+  res.send('Hello, World');
 })
