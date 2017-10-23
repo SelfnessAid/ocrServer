@@ -1,1 +1,1 @@
-web: node src/router.js
+web: node router.js
