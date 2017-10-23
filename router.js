@@ -20,7 +20,7 @@ var server = app.listen(3000, function(){
 
 // the multer accessing the key 'image', as defined in the `FormData` object on the front end
 // Passing the uploadToGcs function as middleware to handle the uploading of request.file
-router.post('/image-upload', multer.single('image'), imgUpload.uploadToGcs, function(request, response, next) {
+app.post('/image-upload', multer.single('image'), imgUpload.uploadToGcs, function(request, response, next) {
   const data = request.body;
   if (request.file && request.file.cloudStoragePublicUrl) {
     data.imageUrl = request.file.cloudStoragePublicUrl;
