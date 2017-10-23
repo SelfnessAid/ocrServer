@@ -98,7 +98,7 @@ const m = Multer({
 // });
 
 // A bucket is a container for objects (files).
-const bucket = googleCloudStorage.bucket(process.env.GCLOUD_STORAGE_BUCKET || 'm3t3r-app');
+const bucket = googleCloudStorage.bucket(process.env.GCLOUD_STORAGE_BUCKET || 'm3t3r-pics');
 
 // Display a form for uploading files.
 app.get("/", (req, res) => {
