@@ -75,9 +75,11 @@ const path = require('path');
 
 // Instantiate a storage client
 const googleCloudStorage = storage({
-  projectId: process.env.GCLOUD_STORAGE_BUCKET || 'm3t3r-app',
-  keyFilename: process.env.GCLOUD_KEY_FILE || './M3T3R-bbbccb888201.json'
+  projectId: 'm3t3r-app',
+  keyFilename: './M3T3R-bbbccb888201.json'
 });
+
+console.log(googleCloudStorage);
 
 // Instantiate an express server
 const app = express();
@@ -87,7 +89,9 @@ const m = Multer({
   fileSize: 5 * 1024 * 1024
 });
 
-const bucket = googleCloudStorage.bucket(process.env.GCLOUD_STORAGE_BUCKET || 'm3t3r-pics');
+const bucket = googleCloudStorage.bucket('m3t3r-pics');
+
+console.log(bucket);
 
 // Display a form for uploading files.
 app.get("/", (req, res) => {
